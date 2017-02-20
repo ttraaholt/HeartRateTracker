@@ -1,5 +1,8 @@
 package css.cis3334.heartratetracker;
 
+import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,10 +13,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
-/**
- * Created by Tom Gibbons in Feb 2017.
- * For the CIS 3334 class at St. Scholastica
- */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +44,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                 HeartRate hr = (HeartRate) parent.getItemAtPosition(position);
-                tvSelect.setText("You selected: " + hr.toString());
+                tvSelect.setText("You selected: " + hr.toString() + ": " + hr.getRangeDescrtiption());
+
+                if(hr.toString().contains("Moderate")){
+                    tvSelect.setTextColor(ResourcesCompat.getColor(getResources(), R.color.blue, null));
+                    tvSelect.setTypeface(Typeface.SERIF);
+                } else if(hr.toString().contains("Aerobic")){
+                    tvSelect.setTextColor(ResourcesCompat.getColor(getResources(), R.color.darkorange, null));
+                    tvSelect.setTypeface(Typeface.DEFAULT);
+                } else if(hr.toString().contains("Endurance")){
+                    tvSelect.setTextColor(ResourcesCompat.getColor(getResources(), R.color.orange, null));
+                    tvSelect.setTypeface(Typeface.DEFAULT_BOLD);
+                } else if(hr.toString().contains("Anaerobic")){
+                    tvSelect.setTextColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
+                    tvSelect.setTypeface(Typeface.DEFAULT);
+                } else if(hr.toString().contains("Resting")){
+                    tvSelect.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple, null));
+                    tvSelect.setTypeface(Typeface.MONOSPACE);
+                } else if(hr.toString().contains("Red zone")){
+                    tvSelect.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
+                    tvSelect.setTypeface(Typeface.SANS_SERIF);
+                }
             }
         });
 
